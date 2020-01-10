@@ -1,0 +1,26 @@
+@mixin animation-scale($parent: '.animate-parent--hover') {
+  transform: scale(1);
+  transition: $transition-transform;
+
+  @at-root #{$parent}:hover & {
+    transform: scale(1.03);
+  }
+
+  @at-root #{$parent}:focus & {
+    transform: scale(1.03);
+  }
+}
+
+@mixin animation-jump($parent: '.animate-parent--hover') {
+  transform: translateY(.5rem);
+  transform-origin: bottom center;
+  transition: $transition-transform;
+
+  @at-root #{$parent}:hover & {
+    transform: translateY(0);
+  }
+
+  @at-root #{$parent}:focus & {
+    transform: translateY(0);
+  }
+}

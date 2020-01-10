@@ -1,0 +1,112 @@
+// Theme Yellow
+//
+// Markup:
+// <div class="theme--yellow padding-4">
+//  <sg-insert>3.15.90</sg-insert>
+// </div>
+//
+// sg-wrapper:
+// <div class="container container--fullwidth-xs">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.19
+
+.theme--yellow {
+  @include theme-colours(ee-colour('yellow'), ee-colour('coal'));
+  @include theme-links(ee-colour('dark-teal'));
+  @include theme-heading(ee-colour('coal'));
+  @include theme-btn-spinner(ee-colour('white'));
+  @include theme-btn-secondary($hoverBgColour: ee-colour('teal'));
+
+  .icon-link {
+    color: ee-colour('dark-teal');
+  }
+
+  a .icon-link__icon {
+    fill: ee-colour('dark-teal');
+  }
+
+  .m11-divider {
+    background-color: rgba(ee-colour('dark-teal'), .6);
+  }
+}
+
+// Theme Yellow Links
+//
+// Markup:
+// <div class="theme--yellow padding-4">
+//  <sg-insert>3.11.7</sg-insert>
+//  <hr class="margin-top-2 margin-bottom-2">
+//  <h2 class="h3 text-center">SVG Button and icon links</h2>
+//  <sg-insert>5.4.4</sg-insert>
+//  <sg-insert>3.11.8</sg-insert>
+//  <hr class="margin-top-2 margin-bottom-2">
+//  <h2 class="h3 text-center">Standalone icon links</h2>
+//  <sg-insert>3.11.9</sg-insert>
+// </div>
+//
+// sg-wrapper:
+// <div class="container container--fullwidth-xs">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.19.1
+
+// Theme Yellow Lists
+//
+// Markup:
+// <div class="theme--yellow padding-4">
+//  <sg-insert>3.7</sg-insert>
+//  <sg-insert>3.7.2</sg-insert>
+//  <sg-insert>3.7.3</sg-insert>
+// </div>
+//
+// sg-wrapper:
+// <div class="container container--fullwidth-xs">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.19.2
+
+// Theme Yellow Icons
+//
+// Markup:
+// <div class="theme--yellow padding-4">
+//  <sg-insert>3.4.1</sg-insert>
+// </div>
+//
+// sg-wrapper:
+// <div class="container container--fullwidth-xs">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.19.3
+
+// Theme Yellow CTA
+//
+// Markup:
+// <div class="theme--yellow padding-4">
+//  <sg-insert>3.25.1.1</sg-insert>
+// </div>
+//
+// sg-wrapper:
+// <div class="container container--fullwidth-xs">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.19.4
+
+// Theme Yellow Tooltips
+//
+// Markup:
+// <div class="theme--yellow padding-4">
+//  <sg-insert>3.15.91</sg-insert>
+// </div>
+//
+// sg-wrapper:
+// <div class="container container--fullwidth-xs">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.19.5

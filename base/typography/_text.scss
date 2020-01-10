@@ -1,0 +1,114 @@
+// Inline text elements
+//
+// Markup: ../../../html/base/typography/text.html
+//
+// Styleguide 3.5
+
+p,
+small,
+ul,
+ol,
+.intro,
+.small,
+.xsmall {
+  font-weight: $font-weight-normal;
+  margin: 0;
+}
+
+strong,
+b {
+  font-weight: $font-weight-semibold;
+  line-height: 1;
+}
+
+h1 {
+  strong,
+  b {
+    font-weight: $font-weight-normal;
+  }
+}
+
+small,
+.small {
+  @include rythm-calc('xs');
+}
+
+.xsmall {
+  @include rythm-calc('xxs');
+}
+
+p {
+  @include rythm-calc('s');
+}
+
+.intro {
+  @include rythm-calc('l');
+}
+
+h1 + .intro,
+h3 + p,
+h3 + .m-description {
+  margin-top: (12 / $font-base) * 1rem;
+}
+
+h2 + p,
+h2 + .m-description {
+  margin-top: (8 / $font-base) * 1rem;
+}
+
+p + p {
+  margin-top: (24 / $font-base) * 1rem;
+}
+
+h4 + p,
+.intro + p {
+  margin-top: (4 / $font-base) * 1rem;
+}
+
+@include respond('sm') {
+  p {
+    @include rythm-calc('s');
+  }
+
+  .intro {
+    @include rythm-calc('xl');
+  }
+
+  h2 + p,
+  h2 + .m-description {
+    margin-top: (4 / $font-base) * 1rem;
+  }
+
+  h3 + p,
+  h3 + .m-description {
+    margin-top: (8 / $font-base) * 1rem;
+  }
+}
+
+@include respond('md') {
+  p {
+    @include rythm-calc('m');
+  }
+
+  .intro {
+    @include rythm-calc('g1');
+  }
+
+  h1 + .intro {
+    margin-top: (8 / $font-base) * 1rem;
+  }
+
+  h3 + p,
+  h3 + .m-description {
+    margin-top: (4 / $font-base) * 1rem;
+  }
+}
+
+/* stylelint-disable selector-no-qualifying-type */
+p.h1,
+p.h2,
+p.h3,
+p.h4 {
+  color: ee-colour('slate');
+}
+/* stylelint-enable */

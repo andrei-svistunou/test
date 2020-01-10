@@ -1,0 +1,143 @@
+svg:not(:root) {
+  overflow: hidden;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: $font-rubrik;
+  color: ee-colour('slate');
+  background-color: ee-colour('fog');
+  border: $border-width solid ee-colour('stone');
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+button,
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+legend {
+  box-sizing: border-box;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type=search] {
+  -webkit-appearance: none;
+  outline-offset: -2px;
+}
+
+[type=search]::-webkit-search-cancel-button,
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+figure {
+  margin: 0;
+}
+
+// Competing controls in IE10+ (Windows 8)
+::-ms-reveal,
+::-ms-clear {
+  display: none !important;
+}
+
+::-moz-selection {
+  background: ee-colour('teal');
+  color: ee-colour('white');
+}
+
+::selection {
+  background: ee-colour('teal');
+  color: ee-colour('white');
+}
+
+// stylelint-disable selector-no-qualifying-type
+a:focus,
+button:focus,
+input[type=checkbox]:focus + label,
+input[type=radio]:focus + label,
+input[type=submit]:focus {
+  transition: all;
+  outline: ee-colour('teal') solid .0625rem;
+  outline-offset: .125rem;
+}
+
+:focus[data-focus-type=mouse],
+:focus[data-focus-type=touch] {
+  &:not(input):not(textarea):not(select),
+  &[type=radio] + label,
+  &[type=checkbox] + label,
+  &.timeslot-picker__check[type=radio] + .timeslot-picker__time,
+  &.timeslot-picker__check[type=checkbox] + .timeslot-picker__time {
+    outline: none;
+  }
+}
+// stylelint-enable selector-no-qualifying-type
+
+a:active,
+input:active {
+  outline: none;
+}
+
+template {
+  display: none !important;
+}
+
+// prevent superscript, subscript and code from affecting line-height and breaking the baseline
+sup,
+sub {
+  vertical-align: baseline;
+
+  @include relative(top -.375rem);
+}
+
+sub {
+  top: .375rem;
+}
+
+code {
+  vertical-align: baseline;
+
+  @include relative;
+}
+
+blockquote {
+  margin: 0;
+}
+
+.dialog {
+  color: inherit;
+  padding: 0;
+}
+
+/* Can be used to show 4 pixel baseline to check line up. Set $checkbaseLine to true */
+$checkbaseline: false;
+
+@if $checkbaseline {
+  [class*=theme--],
+  .section-markup-wrapper {
+    background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 3px, #ffb6c1 4px);
+  }
+}

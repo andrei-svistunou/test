@@ -1,0 +1,4 @@
+//Converts px to rems
+@mixin fontsize($size) {
+  font-size: calculaterem($size);
+}

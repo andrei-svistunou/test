@@ -1,0 +1,12 @@
+@mixin selection($background,$color) {
+  //stylelint-disable selector-no-vendor-prefix
+  ::-moz-selection {
+    background: $background;
+    color: $color;
+  }
+
+  ::selection {
+    background: $background;
+    color: $color;
+  }
+}

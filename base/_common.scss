@@ -1,0 +1,17 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $font-base * 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: $font-rubrik;
+  font-weight: $font-weight-normal;
+  margin: 0;
+}

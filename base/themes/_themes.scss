@@ -1,0 +1,289 @@
+// Themes
+//
+// We created our colour combinations to meet AA accessibility standards, whatever the type size. If you&apos;re not sure which combination to use, ask someone in the design team or the brand team.
+//
+// Icons on __.theme--white__, __.theme--yellow__ and __.theme--fog__ should be aqua when not tied to links or interactive elements, and teal when they are tied to links or interactive elements.
+//
+// Icons on __.theme--teal__ and __.theme--slate__ should be white regardless of what they&apos;re tied to.
+//
+// ### Classnames for themes are as follows:
+//
+// * theme--white
+// * theme--teal
+// * theme--slate
+// * theme--yellow
+// * theme--fog
+// * theme--coal
+//
+// Example:
+//
+// <div class="eeg-codeblock">
+//    <code class="language-html">&lt;div class="theme--teal"&gt;.....&lt;/div&gt;</code>
+// </div>
+//
+// For more details for each theme, go to theme specific section:<br>
+// [3.16 White theme](../section/3.16)<br>
+// [3.17 Teal theme](../section/3.17)<br>
+// [3.18 Slate theme](../section/3.18)<br>
+// [3.19 Yellow theme](../section/3.19)<br>
+// [3.20 Fog theme](../section/3.20)<br>
+// [3.21 Coal theme](../section/3.21)
+//
+// When using themes, the type will default to the correct colours according to the theme. It is therefor not required to define the colour of the copy unless there is a specific reason to override it. If an override is required, the [colour helper classes](../section/35.8) can be used.
+// Valid colour combinations are shown below:
+//
+// Markup: ../../../html/base/themes/themes.html
+//
+// sg-wrapper:
+// <div class="display-flex flex-wrap">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.15
+
+@mixin theme-colours($bg: ee-colour('coal'), $colour: ee-colour('white')) {
+  background-color: $bg;
+  color: $colour;
+}
+
+@mixin theme-heading($colour: ee-colour('white')) {
+  h1,
+  h2,
+  h3,
+  h4,
+  .h1,
+  .h2,
+  .h3,
+  .h4 {
+    color: $colour;
+  }
+}
+
+@mixin theme-links($colour: ee-colour('white')) {
+  a:focus,
+  [tabindex]:focus,
+  button:focus,
+  .icon-link {
+    outline-color: $colour;
+  }
+}
+
+@mixin theme-text-link($colour: ee-colour('white')) {
+  a:not(.btn):not(.icon-link):not(.m53-banner__icon-link):not(.svg-link) {
+    color: $colour;
+    border-bottom: thin dotted $colour;
+
+    &:hover {
+      fill: $colour;
+      border-bottom-style: solid;
+    }
+  }
+}
+
+@mixin theme-icon-link($colour: ee-colour('white'), $bg1: ee-colour('white'), $bg2: ee-colour('white')) {
+  .icon-link__icon,
+  .svg-link,
+  .icon-svg {
+    fill: $colour;
+  }
+
+  .icon-link {
+    color: $colour;
+    border-bottom: none;
+
+    &:before {
+      background-color: rgba($bg1, .1);
+    }
+
+    &:after {
+      background-color: $bg2;
+    }
+
+    &:hover {
+      border-bottom: none;
+
+      .icon-link__icon {
+        fill: $bg2;
+      }
+    }
+  }
+
+  .js-tooltip-cta {
+    fill: $colour;
+
+    &:hover {
+      fill: $bg2;
+    }
+  }
+}
+
+@mixin theme-parent-hover($colour: ee-colour('white')) {
+  .icon-link {
+    color: ee-colour('white');
+
+    .icon-link__icon {
+      fill: ee-colour('white');
+    }
+  }
+}
+
+@mixin theme-btn($bg1: ee-colour('yellow'), $bg2: ee-colour('dark-yellow'), $colour: ee-colour('coal'), $hoverBgColour: ee-colour('dark-yellow'), $hoverColour: ee-colour('coal'), $disabledBgColour: ee-colour('stone')) {
+  .btn {
+    background-color: $bg1;
+    color: $colour;
+    border-bottom: 0;
+
+    &:hover {
+      background-color: $hoverBgColour;
+      color: $hoverColour;
+    }
+
+    &:disabled,
+    &.disabled {
+      background-color: $disabledBgColour;
+    }
+  }
+
+  .icon-svg {
+    &:hover {
+      fill: ee-colour('white');
+    }
+  }
+}
+
+@mixin theme-btn-spinner($stroke: ee-colour('aqua')) {
+  .btn__spinner {
+    stroke: $stroke;
+  }
+}
+
+@mixin theme-btn-secondary($colour: ee-colour('teal'), $stroke: ee-colour('teal'), $hoverBgColour: ee-colour('dark-teal'), $hoverColour: ee-colour('white')) {
+  .btn--secondary {
+    background-color: transparent;
+    border: $border-width solid $colour;
+    color: $colour;
+
+    @include theme-btn-spinner($stroke);
+
+    &:hover {
+      background-color: $hoverBgColour;
+      border-color: $hoverBgColour;
+      color: $hoverColour;
+
+      @include theme-btn-spinner($hoverColour);
+    }
+  }
+}
+
+@mixin theme-btn-svg($bg: transparent, $hoverColour: ee-colour('white')) {
+  .btn {
+    &--svg {
+      background-color: $bg;
+
+      &:hover {
+        background: none;
+      }
+    }
+  }
+
+  .icon-svg {
+    &:hover {
+      fill: $hoverColour;
+    }
+  }
+}
+
+@import '_theme-yellow';
+@import '_theme-teal';
+@import '_theme-fog';
+@import '_theme-coal';
+@import '_theme-slate';
+@import '_theme-white';
+
+// White theme
+//
+// [3.16 View white theme examples](../section/3.16)
+//
+// <div class="eeg-codeblock">
+//    <code class="language-html">&lt;div class="theme--white"&gt;.....&lt;/div&gt;</code>
+// </div>
+//
+// Styleguide 3.15.1
+
+// Teal theme
+//
+// [3.17 View teal theme examples](../section/3.17)
+//
+// <div class="eeg-codeblock">
+//    <code class="language-html">&lt;div class="theme--teal"&gt;.....&lt;/div&gt;</code>
+// </div>
+//
+// Styleguide 3.15.2
+
+// Slate theme
+//
+// [3.18 View slate theme examples](../section/3.18)
+//
+// <div class="eeg-codeblock">
+//    <code class="language-html">&lt;div class="theme--slate"&gt;.....&lt;/div&gt;</code>
+// </div>
+//
+// Styleguide 3.15.3
+
+// Yellow theme
+//
+// [3.19 View yellow theme examples](../section/3.19)
+//
+// <div class="eeg-codeblock">
+//    <code class="language-html">&lt;div class="theme--yellow"&gt;.....&lt;/div&gt;</code>
+// </div>
+//
+// Styleguide 3.15.4
+
+// Fog theme
+//
+// [3.20 View fog theme examples](../section/3.20)
+//
+// <div class="eeg-codeblock">
+//    <code class="language-html">&lt;div class="theme--fog"&gt;.....&lt;/div&gt;</code>
+// </div>
+//
+// Styleguide 3.15.5
+
+// Coal theme
+//
+// [3.21 View coal theme examples](../section/3.21)
+//
+// <div class="eeg-codeblock">
+//    <code class="language-html">&lt;div class="theme--coal"&gt;.....&lt;/div&gt;</code>
+// </div>
+//
+// Styleguide 3.15.6
+
+// Markup for theme examples
+//
+// Any additional example code required for various themes can be added to this section.
+// Note: This section is hidden in the SG
+//
+// Markup: ../../../html/base/themes/theme-headings-copy.html
+//
+// sg-wrapper:
+// <div class="container container--fullwidth-xs">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.15.90
+
+// Markup for theme examples
+//
+// Any additional example code required for various themes can be added to this section.
+// Note: This section is hidden in the SG
+//
+// Markup: ../../../html/base/themes/theme-tooltips.html
+//
+// sg-wrapper:
+// <div class="container container--fullwidth-xs">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.15.91

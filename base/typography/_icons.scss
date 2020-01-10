@@ -1,0 +1,172 @@
+// Icons
+//
+// Markup: ../../../html/base/typography/ee-svgs.html
+//
+// Styleguide 3.4
+
+.icon-svg {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-decoration: none;
+  stroke-width: 0;
+  fill: ee-colour('aqua');
+  margin-right: .25rem;
+
+  @include transition;
+  @include size(1.5rem);
+  @include relative(top -.06125rem);
+
+  &:focus {
+    outline: .125rem auto ee-colour('teal');
+  }
+
+  &--medium {
+    @include size(2rem);
+  }
+
+  &--large {
+    @include size(3rem);
+  }
+
+  &--extra-large {
+    @include size(7rem);
+  }
+
+  &--notification-red {
+    fill: ee-colour('notification-red');
+  }
+
+  &--notification-green {
+    fill: ee-colour('notification-green');
+  }
+
+  &--yellow {
+    fill: ee-colour('yellow');
+  }
+
+  &--dark-yellow {
+    fill: ee-colour('dark-yellow');
+  }
+
+  &--coal {
+    fill: ee-colour('coal');
+  }
+
+  &--teal {
+    fill: ee-colour('teal');
+  }
+
+  &[tabindex],
+  &[class*='js-'] {
+    fill: ee-colour('teal');
+
+    &:hover {
+      fill: ee-colour('dark-teal');
+    }
+  }
+}
+
+button:not(disabled) {
+  //stylelint-disable-next-line no-descending-specificity
+  .icon-svg {
+    fill: ee-colour('teal');
+  }
+
+  @include hocus {
+    .icon-svg {
+      fill: ee-colour('dark-teal');
+    }
+  }
+}
+
+// Icon Sizing
+//
+// Markup: ../../../html/base/typography/ee-svgs-sizing.html
+//
+// Styleguide 3.4.0.1
+
+// Icon Colours
+//
+// Markup: ../../../html/base/typography/ee-svgs-colours.html
+//
+// Styleguide 3.4.0.2
+
+// Functional icons
+//
+// Markup: ../../../html/base/typography/ee-svgs-functional-icons.html
+//
+// Styleguide 3.4.0.3
+
+// Creative icons
+//
+// Markup: ../../../html/base/typography/ee-svgs-creative-icons.html
+//
+// Styleguide 3.4.0.4
+
+// Icon Relative Sizing
+//
+// Markup: ../../../html/base/typography/ee-svgs-relative-sizing.html
+//
+// Styleguide 3.4.1
+
+// Circle Icons
+//
+// .icon-circle--small - small size
+// . - default
+// .icon-circle--large - large size
+//
+// Markup:
+// <span class="icon-circle {$modifiers}">a</span>
+// <span class="icon-circle {$modifiers}">b</span>
+// <span class="icon-circle {$modifiers}">c</span>
+// <span class="icon-circle {$modifiers}">
+//   <svg focusable="false" class="icon-svg"><use xlink:href="#eei_validate_func"></use></svg>
+// </span>
+// <span class="icon-circle {$modifiers}">
+//   <svg focusable="false" class="icon-svg"><use xlink:href="#eei_alert_func"></use></svg>
+// </span>
+//
+// Styleguide 3.4.2
+
+.icon-circle {
+  display: inline-block;
+  background-color: ee-colour('teal');
+  color: ee-colour('white');
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  line-height: 3rem;
+
+  @include border-radius(50%);
+  @include size(3rem);
+
+  .icon-svg {
+    fill: ee-colour('white');
+    margin: 0;
+
+    @include size(1.5rem);
+  }
+
+  &--small {
+    font-size: 1rem;
+    line-height: 2rem;
+
+    @include size(2rem);
+
+    .icon-svg {
+      @include size(1rem);
+    }
+  }
+
+  &--large {
+    font-size: 2rem;
+    line-height: 4rem;
+
+    @include size(4rem);
+
+    .icon-svg {
+      @include size(2rem);
+    }
+  }
+}

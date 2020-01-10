@@ -1,0 +1,35 @@
+[class*=embed-responsive] {
+  display: block;
+  width: 100%;
+  padding: 0;
+
+  @include relative;
+
+  &:before {
+    display: block;
+    content: '\0020';
+  }
+
+  .embed-responsive-item,
+  iframe,
+  embed,
+  object,
+  video {
+    border: 0;
+
+    @include absolute(top 0 bottom 0 left 0);
+    @include size(100%);
+  }
+}
+
+.embed-responsive-16by9 {
+  &:before {
+    @include responsive-ratio(16, 9);
+  }
+}
+
+.embed-responsive-1by1 {
+  &:before {
+    @include responsive-ratio(1, 1);
+  }
+}

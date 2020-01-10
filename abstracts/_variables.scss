@@ -1,0 +1,192 @@
+// Variables
+$EE_WRAPPER: 'EE';
+
+// EE Brand colours
+$ee-colours: (
+  'white': #fff,
+  'black': #000,
+  'aqua': #009c9c,
+  'teal': #007b85,
+  'dark-teal': #005a61,
+  'yellow': #ffe600,
+  'dark-yellow': #f5d500,
+  'slate': #6d6e71,
+  'coal': #3c3d41,
+  'silver': #a9a9a9,
+  'stone': #d8d8d9,
+  'fog': #f4f4f4,
+  'notification-red': #e9020b,
+  'notification-green': #178804
+) !default;
+
+// EE Device colours
+$ee-device-colours: (
+  'white': #fff,
+  'black': #000,
+  'blue': #7ab0ec,
+  'green': #89cd60,
+  'red': #e33b38,
+  'yellow': #e4db58,
+  'orange': #f78000,
+  'aqua': #007b85,
+  'grey': #848889,
+  'silver': #d1d3d2,
+  'gold': #d9cdbd,
+  'purple': #571b7e,
+  'brown': brown,
+  'pink': #e65153,
+  'rosegold': #d0a8a0
+) !default;
+
+// Breakpoints map
+$breakpoints: (
+  xxs: (max-width: 359px),
+  xs: (min-width: 360px),
+  xxs-sm: (max-width: 615px),
+  xs-sm: '(min-width: 360px) and (max-width: 615px)',
+  sm: (min-width: 616px),
+  sm-md: '(min-width: 616px) and (max-width: 783px)',
+  xxs-md: (max-width: 783px),
+  md: (min-width: 784px),
+  md-lg: '(min-width: 784px) and (max-width: 1023px)',
+  xxs-lg: (max-width: 1023px),
+  lg: (min-width: 1024px),
+  lg-xl: '(min-width: 1024px) and (max-width: 1439px)',
+  xl: (min-width: 1440px)
+) !default;
+
+// Respond values
+$respond-width: (
+  xxs: calc(100% - 1rem),
+  xs: 328px,
+  sm: 584px,
+  md: 752px,
+  lg: 992px,
+  xl: 1392px
+) !default;
+
+// Font sizes map for Rubrik
+$font-sizes:  (
+  xxs: 12,
+  xs: 14,
+  s: 16,
+  m: 17,
+  l: 18,
+  xl: 19,
+  g1: 20,
+  g2: 22,
+  g3: 24,
+  g4: 26,
+  g5: 28,
+  g6: 30,
+  g7: 32,
+  g8: 36
+) !default;
+
+// Line heights map for Rubrik
+// Due to rounding anomalies getting line heights from map, rather than calculating
+$line-heights-unitless:  (
+  xxs: 1.66667,
+  xs: 1.42857,
+  s: 1.5,
+  m: 1.41177,
+  l: 1.55556,
+  xl: 1.4737,
+  g1: 1.6,
+  g2: 1.2728,
+  g3: 1.16667,
+  g4: 1.077,
+  g5: 1.14286,
+  g6: 1.066668,
+  g7: 1.125,
+  g8: 1.11112
+) !default;
+
+// Offsets map for Rubrik (to maintain 4 pixel baseline)
+$offsets:  (
+  xxs: 0,
+  xs: -1,
+  s: 0,
+  m: 0,
+  l: 0,
+  xl: 0,
+  g1: 1,
+  g2: -2,
+  g3: -2,
+  g4: 1,
+  g5: -2,
+  g6: 2,
+  g7: -1,
+  g8: 0
+) !default;
+
+//Font sizes for Nobblee
+$font-sizes-nobblee:  (
+  xs: 36,
+  s: 56,
+  m: 64,
+  l: 80
+) !default;
+
+// Offsets map for Nobblee (to maintain 4 pixel baseline)
+$offsets-nobblee:  (
+  xs: -2,
+  s: 1,
+  m: 2,
+  l: 0
+) !default;
+
+// Fonts
+// Font, line-height, and color for body text, headings, and more.
+$font-nobblee: Nobblee, sans-serif !default;
+$font-rubrik: Rubrik, sans-serif !default;
+$font-size-base:              1rem !default;
+$font-base: 16;
+$font-weight-light:           300 !default;
+$font-weight-normal:          400 !default;
+$font-weight-semibold:        600 !default;
+$font-weight-bold:            700 !default;
+
+// z-indexes map, gathering all Z layers of the application
+$z-indexes: (
+  'below': -1,
+  'zero': 0,
+  'default': 1,
+  'above': 2,
+  'mask': 9899,
+  'fixed': 9900,
+  'sticky': 1000
+) !default;
+
+// Options
+$enable-shadows: true !default;
+$enable-rounded: true !default;
+$enable-transitions: true !default;
+$enable-print-styles: true !default;
+
+$border-width:                .0625rem !default;
+$border-radius:               .25rem !default;
+
+// Transitions duration.
+// Ideally, it should be the same as transitions in constants.js file
+$transitions: (
+  'fast': .15s,
+  'base': .25s,
+  'offset': .25s,
+  'fade': .25s,
+  'color': .25s,
+  'collapse': .6s,
+  'width': 1s,
+  'scale': 1s
+) !default;
+
+$ease-out-quint:    cubic-bezier(.23, 1, .32, 1);
+$ease-in-quad:      cubic-bezier(.55, .085, .68, .53);
+
+$transition-base:      all map-get($transitions, 'base') $ease-in-quad !default;
+$transition-offset:    outline-offset, outline-color map-get($transitions, 'offset') $ease-in-quad !default;
+$transition-color:     background-color map-get($transitions, 'color') linear, color map-get($transitions, 'color') linear !default;
+$transition-fade:      opacity map-get($transitions, 'fade') ease !default;
+$transition-collapse:  height map-get($transitions, 'collapse') ease !default;
+$transition-width:     width map-get($transitions, 'width') ease !default;
+$transition-transform: transform map-get($transitions, 'scale') $ease-out-quint !default;

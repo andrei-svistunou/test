@@ -1,0 +1,282 @@
+// Links
+//
+// Refer to section [3.25 Call to actions](../section/3.25) for information on combining buttons and links
+// - Use sentence case for all links (so letters are only capital if they start a sentence).
+// - Icons that are __tied to links should be teal__ (`icon-link__icon`).
+// - Icons that are __not tied to links should be aqua__ (`icon-svg`).
+//
+// . - default
+// :hover - hover state default
+// :focus - focus state default
+//
+// Markup:
+// <p>Paragraph copy with <a class="{$modifiers}" href="#">link text</a> and some more copy</p>
+//
+// Styleguide 3.11
+
+%anchorFocusState {
+  transition: all;
+  outline: .0625rem solid ee-colour('teal');
+  outline-offset: .125rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: thin dotted ee-colour('black');
+
+  @include transition;
+
+  &:hover {
+    color: ee-colour('black');
+    border-bottom: thin solid ee-colour('black');
+  }
+
+  &:focus {
+    @extend %anchorFocusState;
+  }
+}
+
+.svg-link {
+  fill: ee-colour('teal');
+  border-bottom: none;
+
+  &:hover {
+    fill: ee-colour('dark-teal');
+    border-bottom: none;
+
+    .svg-link__icon {
+      @include transition;
+
+      transform: scale(1.05);
+    }
+  }
+}
+
+.icon-link {
+  color: ee-colour('teal');
+  font-weight: $font-weight-bold;
+  border-bottom: none;
+  display: inline-block;
+  padding-right: .125rem;
+  padding-left: 1.75rem;
+  text-indent: -1.75rem;
+
+  @include relative;
+
+  &__icon {
+    vertical-align: middle;
+    fill: ee-colour('teal');
+    padding-bottom: .125rem;
+    margin-right: .25rem;
+    top: -.125rem;
+
+    @include size(1.5rem);
+    @include transition;
+  }
+
+  &--button {
+    border: none;
+    background: none;
+    font-size: inherit;
+  }
+
+  &--shift-left {
+    text-indent: -1.25rem;
+    padding-left: 1.25rem;
+
+    .icon-link__icon {
+      margin-right: 0;
+      margin-left: -.3125rem;
+    }
+  }
+
+  &:before {
+    content: '\0020';
+    background-color: rgba(ee-colour('aqua'), .1);
+
+    @include size(0, 100%);
+    @include absolute(top 0 left 0);
+    @include transition($transition-width);
+  }
+
+  &:after {
+    content: '\0020';
+    background-color: ee-colour('dark-teal');
+
+    @include absolute(left 0 bottom 0);
+    @include size(0, .0625rem);
+    @include transition($transition-width);
+  }
+
+  &:hover {
+    color: ee-colour('dark-teal');
+    border-bottom: none;
+
+    .icon-link__icon {
+      fill: ee-colour('dark-teal');
+      @include transition;
+    }
+
+    &:before,
+    &:after {
+      width: 100%;
+    }
+  }
+}
+
+// stylelint-disable selector-no-qualifying-type
+a.animate-parent--hover:hover {
+  .icon-link {
+    color: ee-colour('dark-teal');
+    border-bottom: none;
+
+    &:before,
+    &:after {
+      width: 100%;
+    }
+  }
+
+  .icon-link__icon {
+    fill: ee-colour('dark-teal');
+  }
+}
+// stylelint-enable selector-no-qualifying-type
+
+// Imitation the focus anchor state to focusable elements with [tabindex]
+[tabindex]:focus {
+  @extend %anchorFocusState;
+}
+
+// Links inside header tags
+//
+// . - default
+// :hover - hover state default
+// :focus - focus state default
+//
+// Markup:
+// <h4>This is an h4 <a class="{$modifiers}" href="#">with link text</a> example</h4>
+//
+// Styleguide 3.11.2
+
+// Standalone link
+//
+// . - default
+// :hover - hover state default
+// :focus - focus state default
+//
+// Markup:
+// <a class="{$modifiers}" href="#">Standalone link</a>
+//
+// Styleguide 3.11.3
+
+// Links - svg
+//
+// external_link - external link
+// download - download link
+// chevron_right - internal link
+//
+// Markup:
+// <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_{$modifiers}"></use></svg>This is a link</a>
+//
+// Styleguide 3.11.4
+
+// Buttons as links - svg
+//
+// external_link - external button
+// download - download button
+// chevron_right - internal button
+//
+// Markup:
+// <button class="icon-link icon-link--button"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_{$modifiers}"></use></svg>This is a link</button>
+//
+// Styleguide 3.11.4.1
+
+// Link that wraps
+//
+// Markup:
+//  <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is an internal link with long text which should wrap nicely underneath</a>
+//
+// sg-wrapper:
+// <div class="width-md-30-perc" id="section-3-11-5">
+//   <sg-wrapper-content/>
+//</div>
+//
+// Styleguide 3.11.5
+
+// Internal link line up
+//
+// Use class `icon-link--shift-left` when internal link needs to line up with text above/below<br>
+// Alternatively refer to [3.25 CTA Layout](../section/3.25)</a> to use cta-layout grouping
+//
+// Markup:
+//     <a href="#" class="icon-link icon-link--shift-left margin-top-1"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Find out more and check this link on wrapping</a>
+//
+// sg-wrapper:
+// <div class="width-md-30-perc">
+//  <h3>Cum sociis natoque penatibus magnis parturient</h3>
+//  <div class="m-description">
+//    <p>Our range of pay as you go packs mean you only pay for what you need. And with our Special Edition packs available online you can get an even better deal.</p>
+//   </div>
+//   <sg-wrapper-content/>
+//   </div>
+// </div>
+//
+// Styleguide 3.11.6
+
+// In-text links
+//
+// Markup:
+// <h2>This is <a href="#">linked text</a> inside h2</h2>
+// <h3>This is <a href="#">linked text</a> inside h3</h3>
+// <h4>This is <a href="#">linked text</a> inside h4</h4>
+// <p>This is <a href="#">linked text</a> inside a p tag</p>
+// <small>This is <a href="#">linked text</a> inside a small tag</small>
+//
+// Styleguide 3.11.7
+
+// Inline SVG links
+//
+// Markup:
+// <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_external_link"></use></svg>external link</a>
+// <a href="#" class="icon-link margin-left-2"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_download"></use></svg>download link</a>
+// <a href="#" class="icon-link margin-left-2"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>internal link</a>
+//
+// Styleguide 3.11.8
+
+// Standalone Icon Links
+//
+// Markup:
+//  <a class="svg-link" href="#" role="link" aria-label="instagram">
+//    <svg focusable="false" class="svg-link__icon icon-svg--large">
+//      <use xlink:href="#eei_instagram"></use>
+//    </svg>
+//  </a>
+//  <a class="svg-link" href="#" role="link" aria-label="Twitter">
+//    <svg focusable="false" class="svg-link__icon icon-svg--large">
+//      <use xlink:href="#eei_twitter"></use>
+//    </svg>
+//  </a>
+//  <a class="svg-link" href="#" role="link" aria-label="Facebook">
+//    <svg focusable="false" class="svg-link__icon icon-svg--large">
+//      <use xlink:href="#eei_facebook"></use>
+//    </svg>
+//  </a>
+//
+// Styleguide 3.11.9
+
+// Back to top link
+//
+// Apply empty `data-back-link-target` attribute to scroll to the beginning of the body tag.<br>
+// Or use `data-back-link-target="Id"` attribute with predefined identifier to scroll to the block with the corresponding Id.
+//
+// Markup:
+// <a href="#" class="icon-link" data-back-link-target><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_up"></use></svg>Back to top</a>
+// <a href="#" class="icon-link margin-left-2" data-back-link-target="section-3-11-5"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_up"></use></svg>Back to section 3.11.5</a>
+//
+// sg-wrapper:
+// <div class="text-right padding-right-4" id="section-3-11-10">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.11.10

@@ -1,0 +1,16 @@
+// Simple Hocus Sass @mixin for :hover and :focus pseudos.
+@mixin hocus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+// Simple Hacus Sass @mixin for :hover, :active and :focus pseudos.
+@mixin hacus {
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
+}

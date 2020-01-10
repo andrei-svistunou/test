@@ -1,0 +1,647 @@
+// Call to actions
+//
+// This section shows how to combine CTA's (buttons and links) with the various alignment options for use in modules and components.<br>
+// Modules and components will each have their own rules about which combinations of CTA's are allowed (as defined by Design team)
+//
+// For more information on buttons see [5.4 Buttons](../section/5.4)
+//
+// For more information on links see [3.11 Links](../section/3.11)
+//
+// Use `cta-layout--horizontal` class to align CTA's horizontally.<br>
+// Use `cta-layout--vertical` class to align CTA's vertically.<br><br>
+// Use `cta-layout--left` class to left align<br>
+// Use `cta-layout--center` class to center align<br>
+// Use `cta-layout--right` class to right align<br><br>
+// __Exceptions:__<br>
+// On smaller viewports, buttons will span full width and all links will be center aligned regardless of alignment class selected<br>
+// `cta-layout--tertiary` class is required if there are __only__ tertiary links. This will force links to show vertically, and will also then obey alignment class on smaller viewports. Also fixes alignment if there are multiple tertiary links!<br>
+// `cta-layout--tertiary` should only be used if there are no buttons otherwise alignment will be incorrect on small viewports.  <br><br>
+// __Overriding alignment for specific breakpoints__<br>
+// For some modules, the alignment may need to differ at certain breakpoints depending on the design. In this case the override classes should be used<br>
+// `cta-layout--xs-center` to align center on xsmall breakpoints (up to 615px) <br>
+// `cta-layout--xs-left` to align left on xsmall breakpoints (up to 615px) <br>
+// `cta-layout--xs-right` to align right on xsmall breakpoints (up to 615px) <br>
+// `cta-layout--sm-center` to align center on small breakpoints (616px - 783px) <br>
+// `cta-layout--sm-left` to align left on small breakpoints (616px - 783px) <br>
+// `cta-layout--sm-right` to align right on small breakpoints (616px - 783px) <br>
+// `cta-layout--md-center` to align center on medium breakpoint (784px - 1023px) <br>
+// `cta-layout--md-left` to align left on medium breakpoint (784px - 1023px) <br>
+// `cta-layout--md-right` to align right on medium breakpoint (784px - 1023px) <br>
+// `cta-layout--lg-center` to align center on large breakpoint (From 1024px) <br>
+// `cta-layout--lg-left` to align left on large breakpoint (From 1024px) <br>
+// `cta-layout--lg-right` to align right on large breakpoint (From 1024px) <br>
+// eg Use `cta-layout--md-center` on m02 module for 784px breakpoint<br>
+// ### Order of CTA's ###
+// When CTA's are ordered horizontally, they should be ordered tertiary, secondary then primary. (Note, order will automatically reverse on wrapping)<br>
+// When CTA's are ordered vertically, then they should appear as primary, then secondary, then tertiary.
+// ### Accessibility ###
+// Ensure that all CTA's are specific and give users a sense of the target. Use aria-label or assistive-text class to add information for screenreaders<br>
+// Example:
+// <code>&lt;a href="#" aria-label="Find out more about iPhone 8"&gt;Find out more&lt;/a&gt;</code>
+//
+// Styleguide 3.25
+
+.cta-layout {
+  margin-top: 1rem;
+
+  .btn,
+  .icon-link {
+    margin: 0 .75rem .75rem 0;
+  }
+
+  &--horizontal {
+    display: flex;
+    flex-flow: row wrap-reverse;
+    justify-content: center;
+  }
+
+  &--vertical {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+  }
+
+  &--center {
+    align-items: center;
+  }
+
+  &--left {
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    /* stylelint-disable no-descending-specificity */
+    .btn {
+      margin-left: 0;
+    }
+
+    .icon-link {
+      text-indent: -1.25rem;
+      padding-left: 1.25rem;
+
+      .icon-link__icon {
+        margin-left: -.3125rem;
+        margin-right: 0;
+      }
+    }
+    /* stylelint-enable no-descending-specificity */
+  }
+
+  &--right {
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    /* stylelint-disable no-descending-specificity */
+    .btn {
+      margin-right: 0;
+      overflow: visible;
+    }
+    /* stylelint-enable no-descending-specificity */
+  }
+
+  &--tertiary {
+    flex-flow: column wrap;
+  }
+
+  &--horizontal.cta-layout--left {
+    align-items: center;
+    @include respond('xxs-md') {
+      justify-content: center;
+    }
+  }
+
+  &--horizontal.cta-layout--right {
+    align-items: center;
+
+    .btn {
+      margin-right: 0;
+      margin-left: .5rem;
+    }
+    @include respond('xxs-md') {
+      justify-content: center;
+    }
+  }
+
+  &--vertical.cta-layout--left {
+    /* Remove the left margin on button so it lines up with edge of container */
+    .btn {
+      margin-left: 0;
+    }
+    @include respond('xxs-md') {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &--vertical.cta-layout--right {
+    /* Remove the right margin on button so it lines up with edge of container */
+    .btn {
+      margin-right: 0;
+    }
+    @include respond('xxs-md') {
+      align-items: center;
+    }
+  }
+
+  /* If only tertiary links then alignment class should be re-instated. Otherwise would be centered for small viewports */
+  &--left.cta-layout--tertiary {
+    align-items: flex-start;
+  }
+
+  &--right.cta-layout--tertiary {
+    align-items: flex-end;
+  }
+
+  @include respond('xxs-sm') {
+    &--xs-left {
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+
+    &--xs-center {
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    &--xs-right {
+      justify-content: flex-end !important;
+      align-items: flex-end !important;
+    }
+  }
+
+  @include respond('sm-md') {
+    &--sm-left {
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+
+    &--sm-center {
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    &--sm-right {
+      justify-content: flex-end !important;
+      align-items: flex-end !important;
+    }
+  }
+
+  @include respond('md-lg') {
+    &--md-left {
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+
+    &--md-center {
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    &--md-right {
+      justify-content: flex-end !important;
+      align-items: flex-end !important;
+    }
+  }
+
+  @include respond('lg') {
+    &--lg-left {
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+
+    &--lg-center {
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    &--lg-right {
+      justify-content: flex-end !important;
+      align-items: flex-end !important;
+    }
+  }
+}
+
+// CTA Grouping - horizontal and centred - All 3
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--center">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//    <a class="btn btn--secondary" href="#">Button text</a>
+//    <a class="btn" href="#">Buy now</a>
+//  </div>
+//
+// Styleguide 3.25.1
+
+// CTA Grouping - horizontal and centred - Primary and Secondary
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--center">
+//    <a class="btn btn--secondary" href="#">Button text</a>
+//    <a class="btn" href="#">Button text</a>
+//  </div>
+//
+// Styleguide 3.25.1.1
+
+// CTA Grouping - horizontal and centred - Primary and Tertiary link
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--center">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//    <a class="btn" href="#">Button text</a>
+//  </div>
+//
+// Styleguide 3.25.1.2
+
+// CTA Grouping - horizontal and centred - 2 Tertiary links
+//
+// **Note: 2 links should always be vertical aligned regardless of alignment option selected (Design decision)**<br>
+// Use `cta-layout--tertiary` class when there are 2 links to force vertical alignment<br>
+// This will also then ensure that links follow the left and right alignment classes on mobile (otherwise mobile would be center aligned)
+//
+// Markup:
+// <div class="cta-layout cta-layout--horizontal cta-layout--center cta-layout--tertiary">
+//   <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//   <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is another link</a>
+// </div>
+//
+// Styleguide 3.25.1.3
+
+// CTA Grouping - horizontal and centred - Tertiary link
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment (to line up with buttons).**<br>
+// Use `cta-layout--tertiary` if a standalone link is used, then it will adhere to the alignment class
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--center cta-layout--tertiary">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//  </div>
+//
+// Styleguide 3.25.1.4
+
+// CTA Grouping - vertical and centred - All 3
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--center">
+//    <a class="btn" href="#">Button text</a>
+//    <a class="btn btn--secondary" href="#">Button text</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//    </div>
+//  </div>
+//
+// Styleguide 3.25.2
+
+// CTA Grouping - vertical and centred - Primary and secondary
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--center">
+//    <a class="btn" href="#">Button text</a>
+//    <a class="btn btn--secondary" href="#">Button text</a>
+//  </div>
+//
+// Styleguide 3.25.2.1
+
+// CTA Grouping - vertical and centred - Primary and tertiary
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--center">
+//    <a class="btn" href="#">Button text</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//  </div>
+//
+// Styleguide 3.25.2.2
+
+// CTA Grouping - vertical and centred - 2 tertiary links
+//
+// **Note: 2 links should always be vertical aligned regardless of alignment option selected (Design decision)<br>**
+// Use `cta-layout--tertiary` class when there are 2 links to force vertical alignment<br>
+// This will also then ensure that links follow the left and right alignment classes on mobile (otherwise mobile would be center aligned)
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--center cta-layout--tertiary">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a longer link</a></span>
+//  </div>
+//
+// Styleguide 3.25.2.3
+
+// CTA Grouping - vertical and centred - Primary
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--center">
+//    <a class="btn" href="#">Choose a pack now</a>
+//  </div>
+//
+// Styleguide 3.25.2.4
+
+// CTA Grouping - horizontal and left-aligned - All 3
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--left">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//    <a class="btn btn--secondary" href="#">Button text</a>
+//    <a class="btn" href="#">Button text</a>
+//  </div>
+//
+// Styleguide 3.25.3
+
+// CTA Grouping - horizontal and left-aligned - Primary and Secondary
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--left">
+//    <a class="btn btn--secondary" href="#">Button text</a>
+//    <a class="btn" href="#">Button text</a>
+//  </div>
+//
+// Styleguide 3.25.3.1
+
+// CTA Grouping - horizontal and left-aligned - Primary and tertiary
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--left">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//    <a class="btn" href="#">Button text</a>
+//  </div>
+//
+// Styleguide 3.25.3.2
+
+// CTA Grouping - horizontal and left-aligned - 2 tertiary links
+//
+// **Note: 2 links should always be vertical aligned regardless of alignment option selected (Design decision)<br>**
+// Use `cta-layout--tertiary` class when there are 2 links to force vertical alignment<br>
+// This will also then ensure that links follow the left and right alignment classes on mobile (otherwise mobile would be center aligned)
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--left cta-layout--tertiary">
+//      <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//      <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a longer link</a>
+//  </div>
+//
+// Styleguide 3.25.3.3
+
+// CTA Grouping - horizontal and left-aligned - tertiary link
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment (to line up with buttons).**<br>
+// Use `cta-layout--tertiary` if a standalone link is used, then it will adhere to the alignment class
+//
+// Markup:
+// <div class="cta-layout cta-layout--horizontal cta-layout--left cta-layout--tertiary">
+//   <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Link text</a>
+// </div>
+//
+// Styleguide 3.25.3.4
+
+// CTA Grouping - horizontal and left-aligned - tertiary external link
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment (to line up with buttons).**<br>
+// Use `cta-layout--tertiary` if a standalone link is used, then it will adhere to the alignment class
+//
+// Markup:
+// <div class="cta-layout cta-layout--horizontal cta-layout--left cta-layout--tertiary">
+//   <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_external_link"></use></svg>Link text</a>
+// </div>
+//
+// Styleguide 3.25.3.5
+
+// CTA Grouping - vertical and left-aligned- All 3
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--left">
+//    <a class="btn" href="#">Buy now</a>
+//    <a class="btn btn--secondary" href="#">Button 2</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//  </div>
+//
+// Styleguide 3.25.4
+
+// CTA Grouping - vertical and left-aligned - Primary and secondary
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--left">
+//    <a class="btn" href="#">Buy now</a>
+//    <a class="btn btn--secondary" href="#">Button 2</a>
+//  </div>
+//
+// Styleguide 3.25.4.1
+
+// CTA Grouping - vertical and left-aligned - Primary and tertiary link
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--left">
+//    <a class="btn" href="#">Buy now</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//  </div>
+//
+// Styleguide 3.25.4.2
+
+// CTA Grouping - vertical and left-aligned - 2 tertiary links
+//
+// **Note: 2 links should always be vertical aligned regardless of alignment option selected (Design decision)<br>**
+// Use `cta-layout--tertiary` class when there are 2 links to force vertical alignment<br>
+// This will also then ensure that links follow the left and right alignment classes on mobile (otherwise mobile would be center aligned)
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--left cta-layout--tertiary">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a longer link</a>
+//  </div>
+//
+// Styleguide 3.25.4.3
+
+// CTA Grouping - vertical and left-aligned - tertiary link
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment (to line up with buttons).**
+// Use `cta-layout--tertiary` if a standalone link is used, then it will adhere to the alignment class
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--left cta-layout--tertiary">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Link text</a>
+//  </div>
+//
+// Styleguide 3.25.4.5
+
+// CTA Grouping - horizontal and right-aligned - All 3
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--right">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Link text</a>
+//    <a class="btn btn--secondary" href="#">Info</a>
+//    <a class="btn" href="#">Buy now</a>
+//  </div>
+//
+// Styleguide 3.25.5
+
+// CTA Grouping - horizontal and right-aligned - Primary and secondary
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--right">
+//    <a class="btn btn--secondary" href="#">Info</a>
+//    <a class="btn" href="#">Buy now</a>
+//  </div>
+//
+// Styleguide 3.25.5.1
+
+// CTA Grouping - horizontal and right-aligned - Primary and tertiary
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--right">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Link text</a>
+//    <a class="btn" href="#">Buy now</a>
+//  </div>
+//
+// Styleguide 3.25.5.2
+
+// CTA Grouping - horizontal and right-aligned - 2 tertiary links
+//
+//
+// **Note: 2 links should always be vertical aligned regardless of alignment option selected (Design decision)<br>**
+// Use `cta-layout--tertiary` class when there are 2 links to force vertical alignment<br>
+// This will also then ensure that links follow the left and right alignment classes on mobile (otherwise mobile would be center aligned)
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--right cta-layout--tertiary">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a longer link</a>
+//  </div>
+//
+// Styleguide 3.25.5.3
+
+// CTA Grouping - horizontal and right-aligned - tertiary link
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment (to line up with buttons).**<br>
+// Use `cta-layout--tertiary` if a standalone link is used, then it will adhere to the alignment class
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--right cta-layout--tertiary">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Link text</a>
+//  </div>
+//
+// Styleguide 3.25.5.5
+
+// CTA Grouping - vertical and right-aligned - All 3
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--right">
+//    <a class="btn" href="#">Button text</a>
+//    <a class="btn btn--secondary" href="#">Button text</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//  </div>
+//
+// Styleguide 3.25.6
+
+// CTA Grouping - vertical and right-aligned - Primary and secondary
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--right">
+//    <a class="btn" href="#">Button text</a>
+//    <a class="btn btn--secondary" href="#">Button text</a>
+//  </div>
+//
+// Styleguide 3.25.6.1
+
+// CTA Grouping - vertical and right-aligned - Primary and tertiary
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment**
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--right">
+//    <a class="btn" href="#">Button text</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//  </div>
+//
+// Styleguide 3.25.6.2
+
+// CTA Grouping - vertical and right-aligned - 2 tertiary links
+//
+// **Note: 2 links should always be vertical aligned regardless of alignment option selected (Design decision)<br>**
+// Use `cta-layout--tertiary` class when there are 2 links to force vertical alignment<br>
+// This will also then ensure that links follow the left and right alignment classes on mobile (otherwise mobile would be center aligned)
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--right cta-layout--tertiary">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a link</a>
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>This is a longer link</a>
+//  </div>
+//
+// Styleguide 3.25.6.3
+
+// CTA Grouping - vertical and right-aligned - tertiary link
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment (to line up with buttons).**<br>
+// Use `cta-layout--tertiary` if a standalone link is used, then it will adhere to the alignment class
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--right cta-layout--tertiary">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Link text</a>
+//  </div>
+//
+// Styleguide 3.25.6.5
+
+// CTA Grouping - Override tertiary link alignment for mobile.
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment (to line up with buttons).**<br>
+// Use `cta-layout--tertiary` if a standalone link is used, then it will adhere to the alignment class <br>
+// For some modules, the alignment may differ on mobile so an additional class is required.<br>
+// Use `cta-layout--tertiary-sm-left` to align small (up to 783px) left <br>
+// Use `cta-layout--tertiary-sm-right` to align small (up to 783px)  right <br>
+// Use `cta-layout--tertiary-sm-center` to align small (up to 783px) center <br>
+// In example below, tertiary link alignment is left for desktop, but center for smaller breakpoints
+//
+// Markup:
+//  <div class="cta-layout cta-layout--vertical cta-layout--left cta-layout--tertiary cta-layout--tertiary-sm-center">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Link text</a>
+//  </div>
+//
+// Styleguide 3.25.7
+
+// CTA Grouping - Override link alignment for specific breakpoints.
+//
+// **Note: CTA's are centred by default on smaller breakpoints regardless of alignment (to line up with buttons).**<br>
+// It is possible to use the override classes to override the alignment for a specific breakpoint.  <br>
+// For some modules, the alignment may differ on some breakpoints. In this case use the override classes as documented at top of page.<br>
+//
+// Use `cta-layout--md-center` to align medium breakpoint (i.e 784 to 1023px) center <br>
+// In example below, CTA alignment is left, but center for medium breakpoint (cta-layout--md-center is used to override)
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--left cta-layout--md-center">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Link text</a>
+//    <a class="btn" href="#">Button text</a>
+//  </div>
+//
+// Styleguide 3.25.7.1
+
+// CTA Grouping - Override tertiary link alignment for mobile.
+//
+// **Note: Links are centred on smaller breakpoints regardless of alignment (to line up with buttons).**<br>
+// Use `cta-layout--tertiary` if only tertiary links are used, then it will adhere to the alignment class <br>
+// For some modules, the alignment may differ on mobile (i.e back to center). In this case an additional class is required for mobile.<br>
+// Use `cta-layout--sm-center` to force alignment back to center for small breakpoint (up to 615px)<br>
+// In example below, link alignment is right for desktop and would also be right for mobile (due to rules for cta-layout--tertiary class), but using
+// cta-layout--xs-center will force it to centre align for breakpoint up to 615px.
+// cta-layout--sm-center will force it to centre align for breakpoint 616px to 783px.
+//
+// Markup:
+//  <div class="cta-layout cta-layout--horizontal cta-layout--right cta-layout--tertiary cta-layout--xs-center cta-layout--sm-center  cta-layout--md-center">
+//    <a href="#" class="icon-link"><svg focusable="false" class="icon-link__icon"><use xlink:href="#eei_chevron_right"></use></svg>Link text</a>
+//  </div>
+//
+// Styleguide 3.25.7.2

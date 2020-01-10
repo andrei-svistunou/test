@@ -1,0 +1,52 @@
+// Return EE-colours from map
+@function ee-color($key: 'aqua') {
+  @return map-get($ee-colours, $key);
+}
+
+// Return EE-device-colours from map
+@function ee-device-colour($key: 'white') {
+  @return map-get($ee-device-colours, $key);
+}
+
+// Get a z-index value from a layer name
+@function z($layer) {
+  @return map-get($z-indexes, $layer);
+}
+
+// Converts pixels to rems
+@function calculaterem($size) {
+  $remSize: $size / $font-base;
+  @return $remSize * 1rem;
+}
+
+// Return respond-width from map
+@function container-width($key) {
+  @return map-get($respond-width, $key);
+}
+
+// Reverse the order of a SASS map
+@function mapReverse ($map) {
+  $result: null;
+
+  @if type-of($map) == 'map' {
+    $keys: map-keys($map);
+    $map-reversed: ();
+
+    @for $i from length($keys) through 1 {
+      $map-reversed: map-merge(
+        $map-reversed,
+        (nth($keys, $i): map-get($map, nth($keys, $i)))
+      );
+    }
+
+    @if type-of($map-reversed) == 'map' {
+      $result: $map-reversed;
+    } @else {
+      @warn 'There was an error reversing the order of "#{$map}"';
+    }
+  } @else {
+    @warn '"#{$map}" is not a valid map';
+  }
+
+  @return $result;
+}

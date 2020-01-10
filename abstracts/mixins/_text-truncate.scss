@@ -1,0 +1,38 @@
+// Text truncate
+// Requires inline-block or block for proper styling
+
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &--tooltip {
+    padding-right: 1px; //IE11, Edge fix
+
+    & + .js-tooltip-cta {
+      display: none;
+    }
+
+    &-show {
+      margin-right: 0;
+
+      & + .js-tooltip-cta {
+        display: block;
+        flex-shrink: 0;
+        margin-right: .5rem;
+        //@include absolute(top 0 right 0);
+      }
+    }
+  }
+}
+
+// SCSS Multi line clamp
+// Works only in webkit browsers
+// For IE11 we have fallback on js witch loads with other polyfills
+
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+}
